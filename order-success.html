@@ -28,7 +28,7 @@
         </a>
 
         <div style="font-size: 0.875rem; font-weight: 600; color: var(--success); display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-circle-check"></i> Demo Transaction Approved
+          <i class="fa-solid fa-circle-check"></i> Transaction Approved
         </div>
 
         <div class="header-actions">
@@ -52,7 +52,7 @@
         <div class="footer-payment-icons">
           <span>Official Order Invoice</span>
           <span>·</span>
-          <span>Verified Demo Transaction</span>
+          <span>Verified Transaction</span>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
         }
       }
 
-      // If visited directly without an order, generate a demo order so user sees the full UI
+      // If visited directly without an order, generate a sample order so user sees the full UI
       if (!order) {
         order = {
           orderId: generateOrderId(),
@@ -90,8 +90,8 @@
             state: "Karnataka",
             pin: "560001"
           },
-          paymentMethod: "UPI (demo.shopper@upi)",
-          paymentStatus: "DEMO PAYMENT SUCCESSFUL",
+          paymentMethod: "UPI (shopper@upi)",
+          paymentStatus: "PAYMENT SUCCESSFUL",
           items: [
             {
               name: PRODUCTS[0].name,
@@ -174,7 +174,7 @@
                 Method: ${order.paymentMethod}
               </div>
               <div style="font-size: 0.8125rem; color: var(--success); font-weight: 600; margin-top: 0.2rem;">
-                <i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Demo Authorization
+                <i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Secure Authorization
               </div>
               <div style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.2rem;">
                 Est. Delivery: <strong>2 - 4 Business Days</strong>

@@ -244,7 +244,7 @@ function renderCartPage() {
       <!-- Trust Features -->
       <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--surface-border); display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
         <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-shield-halved" style="color: var(--success);"></i> 256-Bit SSL Encrypted Demo Gateway
+          <i class="fa-solid fa-shield-halved" style="color: var(--success);"></i> 256-Bit SSL Encrypted Gateway
         </div>
         <div style="display: flex; align-items: center; gap: 0.5rem;">
           <i class="fa-solid fa-rotate-left" style="color: var(--primary);"></i> 7 Days Easy Return & Replacement

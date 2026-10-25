@@ -106,11 +106,11 @@ function renderCheckoutOrderSummary() {
         <span class="tabular-nums" style="color: var(--primary); font-size: 1.35rem;">${formatINR(total)}</span>
       </div>
 
-      <!-- Demo Payment Simulation Toggle -->
+      <!-- Payment Failure Simulation Toggle -->
       <div style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-main); border: 1px dashed var(--surface-border); border-radius: var(--radius-sm); font-size: 0.75rem;">
         <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--text-muted); font-weight: 600;">
           <input type="checkbox" id="toggle-simulate-failure" onchange="toggleFailureSimulation(this.checked)">
-          <span>Simulate Bank Gateway Failure (Demo testing)</span>
+          <span>Simulate Bank Gateway Failure (Testing)</span>
         </label>
       </div>
 
@@ -120,7 +120,7 @@ function renderCheckoutOrderSummary() {
       </button>
 
       <div style="margin-top: 1rem; text-align: center; font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-        <i class="fa-solid fa-shield-halved" style="color: var(--success);"></i> 256-Bit SSL Demo Sandbox Security
+        <i class="fa-solid fa-shield-halved" style="color: var(--success);"></i> 256-Bit SSL Secure Payment
       </div>
     </div>
   `;
@@ -479,7 +479,7 @@ function handleProcessPayment() {
     const totals = calculateOrderTotals(cart, appliedCouponCode);
 
     const customerData = {
-      name: document.getElementById('cust-name')?.value.trim() || 'Demo Customer',
+      name: document.getElementById('cust-name')?.value.trim() || 'Guest Customer',
       email: document.getElementById('cust-email')?.value.trim() || 'customer@sunkaraltd.in',
       phone: document.getElementById('cust-phone')?.value.trim() || '9876543210',
       address: document.getElementById('cust-address')?.value.trim() || 'MG Road',
@@ -493,7 +493,7 @@ function handleProcessPayment() {
       createdAt: new Date().toISOString(),
       customer: customerData,
       paymentMethod: selectedPaymentMethod.toUpperCase(),
-      paymentStatus: 'DEMO PAYMENT SUCCESSFUL',
+      paymentStatus: 'PAYMENT SUCCESSFUL',
       items: cart.map(item => {
         const prod = getProductById(item.productId);
         return {

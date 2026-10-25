@@ -1868,26 +1868,6 @@ button {
   text-transform: uppercase;
 }
 
-/* Gateway Demo Disclaimer Banner */
-.gateway-disclaimer {
-  background: #FFFBEB;
-  border: 1px solid #FDE68A;
-  border-radius: var(--radius-md);
-  padding: 0.75rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  font-size: 0.8125rem;
-  color: #92400E;
-  margin-bottom: 1.25rem;
-}
-
-.gateway-disclaimer i {
-  font-size: 1rem;
-  color: #D97706;
-  margin-top: 0.1rem;
-}
-
 /* Simulated Payment Overlay */
 .payment-modal-overlay {
   display: none;
