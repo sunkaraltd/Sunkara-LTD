@@ -19,10 +19,10 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 14,
     badge: "Flagship",
-    image: "/src/assets/images/product_flagship_phone_1792929459254.jpg",
+    image: "assets/images/product_flagship_phone_1792929459254.jpg",
     additionalImages: [
-      "/src/assets/images/product_flagship_phone_1792929459254.jpg",
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/product_flagship_phone_1792929459254.jpg",
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "1 Year Official Samsung India Warranty + 6 Months Screen Protection",
     specs: {
@@ -51,10 +51,10 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 28,
     badge: "Best Seller",
-    image: "/src/assets/images/product_audiophile_headphones_1792929460084.jpg",
+    image: "assets/images/product_audiophile_headphones_1792929460084.jpg",
     additionalImages: [
-      "/src/assets/images/product_audiophile_headphones_1792929460084.jpg",
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/product_audiophile_headphones_1792929460084.jpg",
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "2 Years Official Sony India Replacement Warranty",
     specs: {
@@ -83,9 +83,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 75,
     badge: "Popular OEM",
-    image: "/src/assets/images/product_component_board_1792929460819.jpg",
+    image: "assets/images/product_component_board_1792929460819.jpg",
     additionalImages: [
-      "/src/assets/images/product_component_board_1792929460819.jpg"
+      "assets/images/product_component_board_1792929460819.jpg"
     ],
     warranty: "6 Months Technical Guarantee & ESD Tested",
     specs: {
@@ -114,9 +114,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 19,
     badge: "Pro Toolkit",
-    image: "/src/assets/images/product_soldering_kit_1792929460685.jpg",
+    image: "assets/images/product_soldering_kit_1792929460685.jpg",
     additionalImages: [
-      "/src/assets/images/product_soldering_kit_1792929460685.jpg"
+      "assets/images/product_soldering_kit_1792929460685.jpg"
     ],
     warranty: "1 Year Official Hakko Heating Element & Unit Warranty",
     specs: {
@@ -144,9 +144,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 8,
     badge: "Top Tier",
-    image: "/src/assets/images/hero_electronics_showcase_1792929458222.jpg",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
     additionalImages: [
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "2 Years ASUS On-Site Comprehensive Warranty + Accidental Damage Protection",
     specs: {
@@ -175,9 +175,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 18,
     badge: "Sale",
-    image: "/src/assets/images/hero_electronics_showcase_1792929458222.jpg",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
     additionalImages: [
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "1 Year Official Apple India Brand Warranty + AppleCare Eligible",
     specs: {
@@ -205,9 +205,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 88,
     badge: "Best Value",
-    image: "/src/assets/images/hero_electronics_showcase_1792929458222.jpg",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
     additionalImages: [
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "24 Months Official Anker Replacement Guarantee",
     specs: {
@@ -235,9 +235,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 22,
     badge: "OEM Grade",
-    image: "/src/assets/images/hero_electronics_showcase_1792929458222.jpg",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
     additionalImages: [
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "1 Year Official Dell Replacement Guarantee",
     specs: {
@@ -265,9 +265,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 16,
     badge: "Genuine OEM",
-    image: "/src/assets/images/product_flagship_phone_1792929459254.jpg",
+    image: "assets/images/product_flagship_phone_1792929459254.jpg",
     additionalImages: [
-      "/src/assets/images/product_flagship_phone_1792929459254.jpg"
+      "assets/images/product_flagship_phone_1792929459254.jpg"
     ],
     warranty: "6 Months Touch & Display Warranty",
     specs: {
@@ -295,9 +295,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 31,
     badge: "OEM Grade",
-    image: "/src/assets/images/hero_electronics_showcase_1792929458222.jpg",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
     additionalImages: [
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "1 Year Official Replacement Warranty",
     specs: {
@@ -325,9 +325,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 120,
     badge: "Must Have",
-    image: "/src/assets/images/hero_electronics_showcase_1792929458222.jpg",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
     additionalImages: [
-      "/src/assets/images/hero_electronics_showcase_1792929458222.jpg"
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
     ],
     warranty: "Lifetime Breakage Warranty",
     specs: {
@@ -355,9 +355,9 @@ const PRODUCTS = [
     inStock: true,
     stockCount: 65,
     badge: "IoT Essential",
-    image: "/src/assets/images/product_component_board_1792929460819.jpg",
+    image: "assets/images/product_component_board_1792929460819.jpg",
     additionalImages: [
-      "/src/assets/images/product_component_board_1792929460819.jpg"
+      "assets/images/product_component_board_1792929460819.jpg"
     ],
     warranty: "6 Months Technical Guarantee",
     specs: {
