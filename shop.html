@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Electronics, Components & Spare Parts | Sunkara LTD</title>
+  <meta name="description" content="Explore our catalog of smartphones, laptops, audio gear, microcontrollers, and replacement spare parts with filters, sorting, and live stock tracking.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <span class="announcement-badge">Code: SUNKARA10</span>
+      <span>Get 10% instant discount on orders above ₹1,000. Free Shipping on orders over ₹999!</span>
+    </div>
+    <button class="announcement-close" aria-label="Dismiss announcement">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span class="brand-text">Sunkara <span>LTD</span></span>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="shop.html" class="nav-link active">Shop All</a>
+          <a href="shop.html?category=smartphones" class="nav-link">Gadgets</a>
+          <a href="shop.html?category=components" class="nav-link">Components</a>
+          <a href="shop.html?category=mobile-parts" class="nav-link">Spare Parts</a>
+          <a href="shop.html?category=tools" class="nav-link">Tools</a>
+        </nav>
+
+        <div class="header-search">
+          <div class="search-input-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="shop-search-input" class="search-input" placeholder="Search catalog...">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <a href="cart.html" class="action-btn" title="Shopping Cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-counter" style="display: none;">0</span>
+          </a>
+          <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-nav">
+    <div class="mobile-nav-panel">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--surface-border); padding-bottom: 1rem;">
+        <div class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span>Sunkara <span>LTD</span></span>
+        </div>
+        <button class="mobile-nav-close">&times;</button>
+      </div>
+      <nav style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Shop All</a>
+        <a href="shop.html?category=smartphones" class="nav-link">Smartphones & Gadgets</a>
+        <a href="shop.html?category=components" class="nav-link">Microcontrollers & ICs</a>
+        <a href="shop.html?category=laptop-parts" class="nav-link">Spare Parts</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+      </nav>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="shop-layout">
+      <!-- Filter Sidebar -->
+      <aside class="filter-sidebar">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--secondary);"><i class="fa-solid fa-filter"></i> Filters</h3>
+          <button onclick="resetFilters()" style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">Reset All</button>
+        </div>
+
+        <!-- Categories Filter -->
+        <div class="filter-group">
+          <div class="filter-heading">Categories</div>
+          <div class="filter-options">
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="all" checked onchange="filterProducts()">
+              <span>All Categories</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="smartphones" onchange="filterProducts()">
+              <span>Smartphones</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="laptops" onchange="filterProducts()">
+              <span>Laptops & Computers</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="audio" onchange="filterProducts()">
+              <span>Headphones & Audio</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="wearables" onchange="filterProducts()">
+              <span>Smartwatches & Wearables</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="chargers" onchange="filterProducts()">
+              <span>Chargers & Cables</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="batteries" onchange="filterProducts()">
+              <span>Batteries & Adapters</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="mobile-parts" onchange="filterProducts()">
+              <span>Mobile Spare Parts</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="laptop-parts" onchange="filterProducts()">
+              <span>Laptop Spare Parts</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="components" onchange="filterProducts()">
+              <span>Circuit Boards & ICs</span>
+            </label>
+            <label class="filter-label">
+              <input type="radio" name="cat-filter" value="tools" onchange="filterProducts()">
+              <span>Repair Tools & Workbenches</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-group">
+          <div class="filter-heading">Max Price</div>
+          <input type="range" id="price-slider" class="price-range-slider" min="500" max="200000" step="500" value="200000" oninput="handlePriceSliderChange(this.value)">
+          <div class="price-display">
+            <span>₹500</span>
+            <span id="price-display-val" style="font-weight: 700; color: var(--primary);" class="tabular-nums">₹2,00,000</span>
+          </div>
+        </div>
+
+        <!-- Availability Filter -->
+        <div class="filter-group">
+          <div class="filter-heading">Availability</div>
+          <div class="filter-options">
+            <label class="filter-label">
+              <input type="checkbox" id="instock-only" onchange="filterProducts()">
+              <span>In Stock Only</span>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Products Grid Section -->
+      <section>
+        <!-- Toolbar -->
+        <div class="shop-toolbar">
+          <div class="results-count" id="results-count">
+            Showing all products
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <label for="sort-select" style="font-size: 0.8125rem; font-weight: 600; color: var(--text-muted);">Sort By:</label>
+            <select id="sort-select" class="sort-select" onchange="filterProducts()">
+              <option value="featured">Featured & Popular</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Highest Customer Rating</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div class="product-grid" id="shop-products-grid">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <div id="no-results" class="empty-state" style="display: none; margin-top: 2rem;">
+          <div class="empty-state-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <h3 class="empty-state-title">No products found</h3>
+          <p class="empty-state-desc">Try clearing your filters or search with different keywords.</p>
+          <button class="btn btn-outline" onclick="resetFilters()">Reset All Filters</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Sunkara LTD. All rights reserved.</div>
+        <div class="footer-payment-icons">
+          <span>Official Storefront</span>
+          <span>·</span>
+          <span>Fast Delivery across India</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/products.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    let currentMaxPrice = 200000;
+
+    function handlePriceSliderChange(val) {
+      currentMaxPrice = Number(val);
+      document.getElementById('price-display-val').textContent = formatINR(currentMaxPrice);
+      filterProducts();
+    }
+
+    function resetFilters() {
+      const radio = document.querySelector('input[name="cat-filter"][value="all"]');
+      if (radio) radio.checked = true;
+      const slider = document.getElementById('price-slider');
+      if (slider) slider.value = 200000;
+      currentMaxPrice = 200000;
+      document.getElementById('price-display-val').textContent = formatINR(200000);
+      const instock = document.getElementById('instock-only');
+      if (instock) instock.checked = false;
+      const search = document.getElementById('shop-search-input');
+      if (search) search.value = '';
+      const sort = document.getElementById('sort-select');
+      if (sort) sort.value = 'featured';
+      
+      // Update URL
+      window.history.replaceState({}, '', 'shop.html');
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const selectedCategory = document.querySelector('input[name="cat-filter"]:checked')?.value || 'all';
+      const instockOnly = document.getElementById('instock-only')?.checked || false;
+      const searchQuery = document.getElementById('shop-search-input')?.value.trim().toLowerCase() || '';
+      const sortMode = document.getElementById('sort-select')?.value || 'featured';
+
+      let filtered = PRODUCTS.filter(p => {
+        // Category match
+        if (selectedCategory !== 'all' && p.categorySlug !== selectedCategory) {
+          return false;
+        }
+        // Price match
+        if (p.price > currentMaxPrice) {
+          return false;
+        }
+        // Stock match
+        if (instockOnly && !p.inStock) {
+          return false;
+        }
+        // Search query
+        if (searchQuery) {
+          const matchName = p.name.toLowerCase().includes(searchQuery);
+          const matchDesc = p.shortDesc.toLowerCase().includes(searchQuery);
+          const matchCat = p.category.toLowerCase().includes(searchQuery);
+          const matchBrand = (p.brand || '').toLowerCase().includes(searchQuery);
+          if (!matchName && !matchDesc && !matchCat && !matchBrand) return false;
+        }
+        return true;
+      });
+
+      // Sorting
+      if (sortMode === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortMode === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortMode === 'rating') {
+        filtered.sort((a, b) => b.rating - a.rating);
+      }
+
+      // Render
+      const grid = document.getElementById('shop-products-grid');
+      const noResults = document.getElementById('no-results');
+      const countEl = document.getElementById('results-count');
+
+      if (filtered.length === 0) {
+        grid.style.display = 'none';
+        noResults.style.display = 'block';
+        countEl.textContent = '0 items found';
+      } else {
+        grid.style.display = 'grid';
+        noResults.style.display = 'none';
+        grid.innerHTML = filtered.map(p => renderProductCard(p)).join('');
+        countEl.textContent = `Showing ${filtered.length} product${filtered.length === 1 ? '' : 's'}`;
+      }
+    }
+
+    // Initialize from URL params (e.g. ?category=components or ?search=laptop)
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('category');
+      const searchParam = urlParams.get('search');
+
+      if (catParam) {
+        const targetRadio = document.querySelector(`input[name="cat-filter"][value="${catParam}"]`);
+        if (targetRadio) targetRadio.checked = true;
+      }
+
+      if (searchParam) {
+        const searchInput = document.getElementById('shop-search-input');
+        if (searchInput) searchInput.value = searchParam;
+      }
+
+      // Live search input in shop
+      const searchInput = document.getElementById('shop-search-input');
+      if (searchInput) {
+        searchInput.addEventListener('input', () => filterProducts());
+      }
+
+      filterProducts();
+    });
+  </script>
+</body>
+</html>

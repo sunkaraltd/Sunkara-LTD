@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Checkout & Payment Gateway | Sunkara LTD</title>
+  <meta name="description" content="Complete your purchase of genuine electronics and spare parts through the Sunkara LTD secure payment gateway.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Checkout Header -->
+  <header class="checkout-header">
+    <div class="container">
+      <div class="checkout-header-inner">
+        <a href="index.html" class="brand-logo">
+          <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span class="brand-text">Sunkara <span>LTD</span></span>
+        </a>
+
+        <!-- Secure Demo Indicator -->
+        <div class="secure-badge">
+          <i class="fa-solid fa-lock"></i>
+          <span>256-Bit SSL Demo Gateway</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Stepper Progress -->
+  <div class="container">
+    <div class="checkout-stepper">
+      <div class="step-item completed">
+        <span class="step-bubble"><i class="fa-solid fa-check"></i></span>
+        <span>Cart</span>
+      </div>
+      <div class="step-divider" style="background: var(--primary);"></div>
+      <div class="step-item active">
+        <span class="step-bubble">2</span>
+        <span>Delivery & Payment</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item">
+        <span class="step-bubble">3</span>
+        <span>Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="container" id="checkout-main-container">
+    <!-- Demo Safety Notice Banner -->
+    <div class="gateway-disclaimer">
+      <i class="fa-solid fa-circle-info"></i>
+      <div>
+        <strong>Demonstration Payment Gateway:</strong> This checkout flow is an interactive frontend simulation. No actual money will be charged, and no real banking secrets should ever be entered. Structure adheres to modern payment gateway SDK patterns (e.g. Razorpay / Cashfree integration ready).
+      </div>
+    </div>
+
+    <!-- Main 2-Column Checkout Layout -->
+    <div class="checkout-layout">
+      <!-- Left Column: Delivery Details & Payment Method Selection -->
+      <div>
+        <!-- Section 1: Customer & Delivery Details -->
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <div class="checkout-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <h2 class="checkout-card-title">1. Customer & Delivery Address</h2>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="cust-name" class="form-label">Full Name *</label>
+              <input type="text" id="cust-name" class="form-input" placeholder="e.g. Vikram Malhotra" value="Vikram Malhotra">
+              <span id="cust-name-error" class="form-error-msg">Full name is required</span>
+            </div>
+
+            <div class="form-group">
+              <label for="cust-email" class="form-label">Email Address *</label>
+              <input type="email" id="cust-email" class="form-input" placeholder="vikram@example.com" value="vikram.malhotra@sunkaraltd.in">
+              <span id="cust-email-error" class="form-error-msg">Valid email required</span>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="cust-phone" class="form-label">Mobile Number (India) *</label>
+              <input type="tel" id="cust-phone" class="form-input" placeholder="10-digit mobile number" maxlength="10" value="9876543210">
+              <span id="cust-phone-error" class="form-error-msg">Valid 10-digit Indian mobile required</span>
+            </div>
+
+            <div class="form-group">
+              <label for="cust-pincode" class="form-label">PIN Code (6 Digits) *</label>
+              <input type="text" id="cust-pincode" class="form-input" placeholder="e.g. 560001" maxlength="6" value="560001">
+              <span id="cust-pincode-error" class="form-error-msg">Valid 6-digit PIN code required</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cust-address" class="form-label">Delivery Street Address *</label>
+            <input type="text" id="cust-address" class="form-input" placeholder="House/Flat No., Building, Street Area" value="#42, Silicon Heights, 100ft Road, Indiranagar">
+            <span id="cust-address-error" class="form-error-msg">Street address is required</span>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label for="cust-city" class="form-label">City *</label>
+              <input type="text" id="cust-city" class="form-input" placeholder="e.g. Bengaluru" value="Bengaluru">
+              <span id="cust-city-error" class="form-error-msg">City is required</span>
+            </div>
+
+            <div class="form-group">
+              <label for="cust-state" class="form-label">State *</label>
+              <select id="cust-state" class="form-select">
+                <option value="Karnataka" selected>Karnataka</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="West Bengal">West Bengal</option>
+              </select>
+              <span id="cust-state-error" class="form-error-msg">Please select a state</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 0.5rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-muted); cursor: pointer;">
+              <input type="checkbox" id="same-as-delivery" checked>
+              <span>Billing address is the same as delivery address</span>
+            </label>
+          </div>
+
+          <!-- Optional Secondary Billing Address Fields (Toggled) -->
+          <div id="billing-address-fields" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--surface-border);">
+            <div class="form-group">
+              <label class="form-label">Billing Street Address</label>
+              <input type="text" class="form-input" placeholder="Separate billing address...">
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Realistic Payment Gateway -->
+        <div class="checkout-card">
+          <div class="checkout-card-header">
+            <div class="checkout-card-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <h2 class="checkout-card-title">2. Select Payment Method</h2>
+          </div>
+
+          <!-- Selectable Method Tabs -->
+          <div class="payment-methods-grid">
+            <div class="payment-method-tab active" data-method="upi">
+              <div class="payment-method-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+              <span class="payment-method-label">UPI</span>
+            </div>
+
+            <div class="payment-method-tab" data-method="card">
+              <div class="payment-method-icon"><i class="fa-solid fa-credit-card"></i></div>
+              <span class="payment-method-label">Card</span>
+            </div>
+
+            <div class="payment-method-tab" data-method="netbanking">
+              <div class="payment-method-icon"><i class="fa-solid fa-building-columns"></i></div>
+              <span class="payment-method-label">Net Banking</span>
+            </div>
+
+            <div class="payment-method-tab" data-method="wallet">
+              <div class="payment-method-icon"><i class="fa-solid fa-wallet"></i></div>
+              <span class="payment-method-label">Wallets</span>
+            </div>
+
+            <div class="payment-method-tab" data-method="cod">
+              <div class="payment-method-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <span class="payment-method-label">Pay on Delivery</span>
+            </div>
+          </div>
+
+          <!-- Tab 1: UPI -->
+          <div id="payment-panel-upi" class="payment-content-panel payment-tab-content">
+            <div class="upi-box">
+              <div style="font-size: 0.8125rem; font-weight: 700; color: var(--secondary);">
+                Instant UPI Payment (Google Pay / PhonePe / Paytm / BHIM)
+              </div>
+              <div class="upi-verify-row">
+                <input type="text" id="upi-id-input" class="form-input" placeholder="e.g. yourname@oksbi or mobile@upi" value="demo.shopper@upi" style="flex: 1;">
+                <button type="button" id="verify-upi-btn" class="btn btn-secondary btn-sm" onclick="verifyUpiId()">Verify</button>
+              </div>
+              <span id="upi-error" class="form-error-msg"></span>
+              <div id="upi-verify-badge" class="upi-verify-badge"></div>
+              <div style="font-size: 0.75rem; color: var(--text-light); display: flex; align-items: center; gap: 0.4rem;">
+                <i class="fa-solid fa-qrcode"></i> A collect notification will be simulated on your registered UPI application.
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Credit / Debit Card -->
+          <div id="payment-panel-card" class="payment-content-panel payment-tab-content" style="display: none;">
+            <!-- Interactive Live Card Visual -->
+            <div class="card-preview-box">
+              <div class="card-preview-header">
+                <div class="card-chip"></div>
+                <i id="card-brand-icon" class="fa-solid fa-credit-card" style="font-size: 1.5rem; color: #94A3B8;"></i>
+              </div>
+              <div id="card-preview-num" class="card-preview-num">4532 •••• •••• 8890</div>
+              <div class="card-preview-footer">
+                <span id="card-preview-name">VIKRAM MALHOTRA</span>
+                <span id="card-preview-expiry">12/28</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="card-name-input" class="form-label">Cardholder Name *</label>
+              <input type="text" id="card-name-input" class="form-input" placeholder="Name as printed on card" value="Vikram Malhotra">
+            </div>
+
+            <div class="form-group">
+              <label for="card-number-input" class="form-label">Card Number (16 Digits) *</label>
+              <input type="text" id="card-number-input" class="form-input" placeholder="4532 0000 0000 8890" maxlength="19" value="4532 8920 1029 8890">
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="card-expiry-input" class="form-label">Valid Thru (MM/YY) *</label>
+                <input type="text" id="card-expiry-input" class="form-input" placeholder="MM/YY" maxlength="5" value="12/28">
+              </div>
+
+              <div class="form-group">
+                <label for="card-cvv-input" class="form-label">CVV / CVC (3-4 Digits) *</label>
+                <input type="password" id="card-cvv-input" class="form-input" placeholder="•••" maxlength="4" value="842">
+              </div>
+            </div>
+
+            <div style="margin-top: 0.25rem;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-muted); cursor: pointer;">
+                <input type="checkbox" id="save-card-checkbox">
+                <span>Save this card for faster demo checkout (Unchecked by default)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Tab 3: Net Banking -->
+          <div id="payment-panel-netbanking" class="payment-content-panel payment-tab-content" style="display: none;">
+            <div class="form-group">
+              <label for="netbanking-bank-select" class="form-label">Select Your Indian Bank *</label>
+              <select id="netbanking-bank-select" class="form-select">
+                <option value="">-- Choose Bank --</option>
+                <option value="HDFC Bank" selected>HDFC Bank</option>
+                <option value="State Bank of India">State Bank of India (SBI)</option>
+                <option value="ICICI Bank">ICICI Bank</option>
+                <option value="Axis Bank">Axis Bank</option>
+                <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
+                <option value="Punjab National Bank">Punjab National Bank (PNB)</option>
+                <option value="Bank of Baroda">Bank of Baroda</option>
+                <option value="IndusInd Bank">IndusInd Bank</option>
+              </select>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">
+              You will be redirected to the simulated Net Banking login gateway of your chosen bank to complete verification.
+            </div>
+          </div>
+
+          <!-- Tab 4: Wallets -->
+          <div id="payment-panel-wallet" class="payment-content-panel payment-tab-content" style="display: none;">
+            <div style="font-size: 0.8125rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">
+              Select Wallet Provider:
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
+                <input type="radio" name="wallet-select" value="Paytm" checked>
+                <span>Paytm Wallet (Linked balance simulation)</span>
+              </label>
+              <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
+                <input type="radio" name="wallet-select" value="PhonePe">
+                <span>PhonePe Wallet</span>
+              </label>
+              <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
+                <input type="radio" name="wallet-select" value="Amazon Pay">
+                <span>Amazon Pay Balance</span>
+              </label>
+              <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
+                <input type="radio" name="wallet-select" value="MobiKwik">
+                <span>MobiKwik ZIP</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Tab 5: Cash on Delivery -->
+          <div id="payment-panel-cod" class="payment-content-panel payment-tab-content" style="display: none;">
+            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
+              <i class="fa-solid fa-truck" style="font-size: 1.5rem; color: var(--primary); margin-top: 0.2rem;"></i>
+              <div>
+                <div style="font-size: 0.875rem; font-weight: 700; color: var(--secondary);">Cash / Pay on Delivery Available</div>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.4; margin-top: 0.25rem;">
+                  Pay in cash or scan the delivery executive's UPI QR code upon receiving your shipment. A verification OTP will be sent to your registered mobile number prior to dispatch.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Sticky Order Summary & Pay Action -->
+      <aside id="checkout-order-summary">
+        <!-- Rendered by checkout.js -->
+      </aside>
+    </div>
+  </main>
+
+  <!-- Simulated Payment Processing Modal -->
+  <div id="payment-modal-overlay" class="payment-modal-overlay">
+    <div class="payment-modal-box">
+      <div class="payment-spinner-wrap">
+        <div class="payment-spinner"></div>
+      </div>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary);" id="modal-status-text">
+        Processing Payment...
+      </h3>
+      <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.25rem;">
+        Do not refresh this page or close your browser tab.
+      </p>
+
+      <div class="payment-step-indicator">
+        <div id="pay-step-1" class="payment-step">
+          <i class="fa-solid fa-circle-notch fa-spin"></i> Establishing secure 256-bit connection...
+        </div>
+        <div id="pay-step-2" class="payment-step">
+          <i class="fa-regular fa-circle"></i> Contacting bank gateway...
+        </div>
+        <div id="pay-step-3" class="payment-step">
+          <i class="fa-regular fa-circle"></i> Generating verifiable transaction receipt...
+        </div>
+      </div>
+
+      <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 1rem;">
+        Sunkara LTD Secure Demo Gateway Protocol v2.4
+      </div>
+    </div>
+  </div>
+
+  <!-- Failure Simulation Retry Modal -->
+  <div id="failure-retry-modal" class="payment-modal-overlay">
+    <div class="payment-modal-box">
+      <div style="width: 60px; height: 60px; background: #FEE2E2; color: #DC2626; border-radius: 9999px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 1.25rem;">
+        <i class="fa-solid fa-xmark"></i>
+      </div>
+      <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary);">
+        Payment Authorization Failed
+      </h3>
+      <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0.5rem 0 1.25rem;">
+        Your simulated payment was declined by the test bank server (Simulated Gateway Failure mode was enabled). Your cart items have been safely preserved.
+      </p>
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="btn btn-primary btn-block" onclick="closeFailureDialog()">
+          <i class="fa-solid fa-rotate-right"></i> Retry Payment
+        </button>
+        <a href="cart.html" class="btn btn-outline" style="white-space: nowrap;">Review Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Sunkara LTD. All rights reserved.</div>
+        <div class="footer-payment-icons">
+          <span>PCI-DSS Demo Sandbox</span>
+          <span>·</span>
+          <span>Encrypted Gateway</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/products.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/cart.js"></script>
+  <script src="/js/checkout.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initCheckout();
+    });
+  </script>
+</body>
+</html>
