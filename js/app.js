@@ -120,8 +120,8 @@ function renderProductCard(product) {
         </div>
 
         <div class="product-pricing">
-          <span class="current-price tabular-nums">${formatINR(product.price)}</span>
-          ${product.originalPrice > product.price ? `<span class="original-price tabular-nums">${formatINR(product.originalPrice)}</span>` : ''}
+          <span class="current-price tabular-nums">${formatGBP(product.price)}</span>
+          ${product.originalPrice > product.price ? `<span class="original-price tabular-nums">${formatGBP(product.originalPrice)}</span>` : ''}
         </div>
 
         <div class="product-actions">

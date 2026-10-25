@@ -134,7 +134,7 @@ function renderCartPage() {
         <div class="cart-item-details">
           <span class="cart-item-cat">${product.category}</span>
           <a href="product.html?id=${product.id}" class="cart-item-name">${product.name}</a>
-          <span class="cart-item-price">${formatINR(product.price)} each</span>
+          <span class="cart-item-price">${formatGBP(product.price)} each</span>
         </div>
         <div class="qty-control">
           <button class="qty-btn" onclick="updateCartQuantity('${product.id}', -1)" aria-label="Decrease quantity">
@@ -146,7 +146,7 @@ function renderCartPage() {
           </button>
         </div>
         <div style="display: flex; align-items: center; gap: 1rem;">
-          <span class="cart-item-total tabular-nums">${formatINR(itemTotal)}</span>
+          <span class="cart-item-total tabular-nums">${formatGBP(itemTotal)}</span>
           <button class="cart-item-remove" onclick="removeFromCart('${product.id}')" aria-label="Remove item">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -166,11 +166,11 @@ function renderCartPage() {
   container.innerHTML = itemsHtml;
 
   // Calculate Totals
-  const { subtotal, discount, shipping, gstAmount, total, appliedCoupon } = calculateOrderTotals(cart, appliedCouponCode);
+  const { subtotal, discount, shipping, vatAmount, total, appliedCoupon } = calculateOrderTotals(cart, appliedCouponCode);
 
   // Render Order Summary
-  const freeShippingNeeded = Math.max(0, 999 - subtotal);
-  const freeShippingPercent = Math.min(100, Math.round((subtotal / 999) * 100));
+  const freeShippingNeeded = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+  const freeShippingPercent = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
 
   summaryContainer.innerHTML = `
     <div class="order-summary-card">
@@ -179,7 +179,7 @@ function renderCartPage() {
       <!-- Free Delivery Progress -->
       <div class="free-shipping-progress">
         <div style="display: flex; justify-content: space-between; font-weight: 600;">
-          <span>${shipping === 0 ? '<i class="fa-solid fa-circle-check"></i> Eligible for FREE Delivery!' : `Add ${formatINR(freeShippingNeeded)} more for FREE Delivery`}</span>
+          <span>${shipping === 0 ? '<i class="fa-solid fa-circle-check"></i> Eligible for FREE Delivery!' : `Add ${formatGBP(freeShippingNeeded)} more for FREE Delivery`}</span>
           <span>${freeShippingPercent}%</span>
         </div>
         <div class="shipping-bar">
@@ -190,29 +190,29 @@ function renderCartPage() {
       <!-- Financial Rows -->
       <div class="summary-row">
         <span>Cart Subtotal</span>
-        <span class="tabular-nums font-semibold">${formatINR(subtotal)}</span>
+        <span class="tabular-nums font-semibold">${formatGBP(subtotal)}</span>
       </div>
 
       ${discount > 0 ? `
       <div class="summary-row" style="color: var(--success);">
         <span>Coupon Discount (${appliedCoupon ? appliedCoupon.code : ''})</span>
-        <span class="tabular-nums font-semibold">-${formatINR(discount)}</span>
+        <span class="tabular-nums font-semibold">-${formatGBP(discount)}</span>
       </div>
       ` : ''}
 
       <div class="summary-row">
         <span>Estimated Delivery Fee</span>
-        <span class="tabular-nums font-semibold">${shipping === 0 ? '<span style="color: var(--success);">FREE</span>' : formatINR(shipping)}</span>
+        <span class="tabular-nums font-semibold">${shipping === 0 ? '<span style="color: var(--success);">FREE</span>' : formatGBP(shipping)}</span>
       </div>
 
       <div class="summary-row" style="font-size: 0.8125rem; color: var(--text-light);">
-        <span>Includes 18% GST (Calculated)</span>
-        <span class="tabular-nums">${formatINR(gstAmount)}</span>
+        <span>Includes 20% VAT (Calculated)</span>
+        <span class="tabular-nums">${formatGBP(vatAmount)}</span>
       </div>
 
       <div class="summary-row total-row">
         <span>Grand Total</span>
-        <span class="tabular-nums" style="color: var(--primary);">${formatINR(total)}</span>
+        <span class="tabular-nums" style="color: var(--primary);">${formatGBP(total)}</span>
       </div>
 
       <!-- Coupon Code Box -->
@@ -223,11 +223,11 @@ function renderCartPage() {
         </div>
         ${!appliedCoupon ? `
           <div class="coupon-input-wrap">
-            <input type="text" id="coupon-code-input" class="coupon-input" placeholder="e.g. SUNKARA10 or SAVE500" value="">
+            <input type="text" id="coupon-code-input" class="coupon-input" placeholder="e.g. SUNKARA10 or SAVE50" value="">
             <button class="btn btn-secondary btn-sm" onclick="applyCouponCode()">Apply</button>
           </div>
           <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 0.4rem;">
-            Try <strong>SUNKARA10</strong> for 10% off or <strong>SAVE500</strong> for ₹500 off
+            Try <strong>SUNKARA10</strong> for 10% off or <strong>SAVE50</strong> for £50 off
           </div>
         ` : `
           <div style="margin-top: 0.4rem; font-size: 0.8125rem; color: var(--success); font-weight: 600;">
@@ -247,7 +247,7 @@ function renderCartPage() {
           <i class="fa-solid fa-shield-halved" style="color: var(--success);"></i> 256-Bit SSL Encrypted Gateway
         </div>
         <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-rotate-left" style="color: var(--primary);"></i> 7 Days Easy Return & Replacement
+          <i class="fa-solid fa-rotate-left" style="color: var(--primary);"></i> 14 Day Returns & Replacement
         </div>
       </div>
     </div>
@@ -283,7 +283,7 @@ function applyCouponCode() {
   const coupon = VALID_COUPONS[code];
 
   if (subtotal < coupon.minOrder) {
-    showToast(`Order total must be at least ${formatINR(coupon.minOrder)} for this coupon.`, "error");
+    showToast(`Order total must be at least ${formatGBP(coupon.minOrder)} for this coupon.`, "error");
     return;
   }
 

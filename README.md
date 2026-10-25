@@ -60,7 +60,7 @@ You can drag and drop this entire folder or connect your GitHub repo to any of t
 ├── shop.html             # Shop catalog with category & price filters, search, sorting
 ├── product.html          # Dynamic product detail page with specs, reviews, gallery
 ├── cart.html             # Interactive shopping cart with coupon & subtotal calculation
-├── checkout.html         # Payment gateway-style checkout (UPI, Card, Net Banking, COD)
+├── checkout.html         # Payment gateway-style checkout (Card, Online Banking, Wallets)
 ├── order-success.html    # Order confirmation screen with tracking ID & receipt
 ├── css/
 │   └── styles.css        # Pure responsive CSS3 styling & modern design system
@@ -69,7 +69,7 @@ You can drag and drop this entire folder or connect your GitHub repo to any of t
 │   ├── app.js            # Home & shop page interactions, live search, filter logic
 │   ├── cart.js           # Shopping cart state management (localStorage)
 │   ├── checkout.js       # Form validation & multi-method payment gateway simulation
-│   └── utils.js          # Currency formatting (₹ INR), notifications, storage helpers
+│   └── utils.js          # Currency formatting (£ GBP), VAT, notifications, storage helpers
 ├── assets/
 │   └── images/           # High-resolution product and showcase assets
 ├── .nojekyll             # Prevents GitHub Pages from ignoring static asset paths
@@ -83,6 +83,6 @@ You can drag and drop this entire folder or connect your GitHub repo to any of t
 ## ⚡ Features
 - **Real-World Brands**: Samsung, Sony, Apple, ASUS, Anker, Hakko, Belkin, Dell, Lenovo, and OEM components.
 - **Persistent Cart**: Powered by `localStorage` (persists across page refreshes and visits).
-- **Realistic Payment Gateway**: Instant UPI validation simulation, card validation with brand badge detection, net banking, and cash on delivery.
+- **Realistic Payment Gateway**: Card validation with brand badge detection, UK online banking, digital wallets, and 20% VAT-inclusive pricing for the UK market.
 - **Responsive Layout**: Designed for mobile phones, tablets, and large desktop screens.
 - **Subpath Compatible**: Uses clean relative links so it works anywhere on GitHub Pages or custom subdirectories.

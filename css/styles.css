@@ -1759,7 +1759,7 @@ button {
 /* Payment Gateway Section */
 .payment-methods-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
@@ -1804,27 +1804,6 @@ button {
   border: 1px solid var(--surface-border);
   border-radius: var(--radius-md);
   padding: 1.25rem;
-}
-
-/* UPI Tab */
-.upi-box {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.upi-verify-row {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.upi-verify-badge {
-  display: none;
-  align-items: center;
-  gap: 0.35rem;
-  color: var(--success);
-  font-size: 0.8125rem;
-  font-weight: 600;
 }
 
 /* Card Tab Live Simulation */

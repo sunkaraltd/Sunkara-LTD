@@ -82,15 +82,16 @@
           orderId: generateOrderId(),
           createdAt: new Date().toISOString(),
           customer: {
-            name: "Vikram Malhotra",
-            email: "vikram.malhotra@sunkaraltd.in",
-            phone: "+91 98765 43210",
-            address: "#42, Silicon Heights, 100ft Road, Indiranagar",
-            city: "Bengaluru",
-            state: "Karnataka",
-            pin: "560001"
+            name: "Oliver Bennett",
+            email: "oliver.bennett@sunkaraltd.co.uk",
+            phone: "07700 900123",
+            address: "61 Albion Road",
+            city: "Hounslow",
+            state: "Greater London",
+            pin: "TW3 3RS"
           },
-          paymentMethod: "UPI (shopper@upi)",
+          paymentMethod: "Debit / Credit Card",
+
           paymentStatus: "PAYMENT SUCCESSFUL",
           items: [
             {
@@ -106,17 +107,17 @@
               image: PRODUCTS[2].image
             }
           ],
-          totals: {
-            subtotal: PRODUCTS[0].price + (PRODUCTS[2].price * 2),
-            discount: 1500,
-            shipping: 0,
-            gstAmount: 16580,
-            total: PRODUCTS[0].price + (PRODUCTS[2].price * 2) - 1500
-          }
+          totals: calculateOrderTotals(
+            [
+              { productId: PRODUCTS[0].id, quantity: 1 },
+              { productId: PRODUCTS[2].id, quantity: 2 }
+            ],
+            'SUNKARA10'
+          )
         };
       }
 
-      const formattedDate = new Date(order.createdAt).toLocaleDateString('en-IN', {
+      const formattedDate = new Date(order.createdAt).toLocaleDateString('en-GB', {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
@@ -161,7 +162,7 @@
               <div style="font-size: 0.75rem; color: var(--text-light); text-transform: uppercase; font-weight: 700;">Delivering To</div>
               <div style="font-size: 0.875rem; font-weight: 700; color: var(--secondary); margin-top: 0.2rem;">${order.customer.name}</div>
               <div style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.4;">
-                ${order.customer.address}, ${order.customer.city}, ${order.customer.state} - ${order.customer.pin}
+                ${order.customer.address}, ${order.customer.city}, ${order.customer.state}, ${order.customer.pin}
               </div>
               <div style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.2rem;">
                 <i class="fa-solid fa-phone" style="font-size: 0.7rem;"></i> ${order.customer.phone}
@@ -177,7 +178,7 @@
                 <i class="fa-solid fa-shield-halved"></i> 256-Bit SSL Secure Authorization
               </div>
               <div style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.2rem;">
-                Est. Delivery: <strong>2 - 4 Business Days</strong>
+                Est. Delivery: <strong>1 - 3 working days</strong>
               </div>
             </div>
           </div>
@@ -193,7 +194,7 @@
                   <span style="font-weight: 600; color: var(--secondary);">${item.name}</span>
                   <span style="color: var(--text-muted); font-size: 0.8125rem;">(Qty: ${item.quantity})</span>
                 </div>
-                <span class="tabular-nums font-semibold">${formatINR(item.price * item.quantity)}</span>
+                <span class="tabular-nums font-semibold">${formatGBP(item.price * item.quantity)}</span>
               </div>
             `).join('')}
           </div>
@@ -202,25 +203,25 @@
           <div style="padding-top: 1rem; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.875rem;">
             <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
               <span>Subtotal</span>
-              <span class="tabular-nums font-semibold">${formatINR(order.totals.subtotal)}</span>
+              <span class="tabular-nums font-semibold">${formatGBP(order.totals.subtotal)}</span>
             </div>
             ${order.totals.discount > 0 ? `
               <div style="display: flex; justify-content: space-between; color: var(--success);">
                 <span>Discount</span>
-                <span class="tabular-nums font-semibold">-${formatINR(order.totals.discount)}</span>
+                <span class="tabular-nums font-semibold">-${formatGBP(order.totals.discount)}</span>
               </div>
             ` : ''}
             <div style="display: flex; justify-content: space-between; color: var(--text-muted);">
               <span>Shipping Charge</span>
-              <span class="tabular-nums font-semibold">${order.totals.shipping === 0 ? '<span style="color: var(--success);">FREE</span>' : formatINR(order.totals.shipping)}</span>
+              <span class="tabular-nums font-semibold">${order.totals.shipping === 0 ? '<span style="color: var(--success);">FREE</span>' : formatGBP(order.totals.shipping)}</span>
             </div>
             <div style="display: flex; justify-content: space-between; color: var(--text-light); font-size: 0.75rem;">
-              <span>GST Included</span>
-              <span class="tabular-nums">${formatINR(order.totals.gstAmount)}</span>
+              <span>VAT Included</span>
+              <span class="tabular-nums">${formatGBP(order.totals.vatAmount)}</span>
             </div>
             <div style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 800; color: var(--secondary); border-top: 1px dashed var(--surface-border); padding-top: 0.75rem; margin-top: 0.5rem;">
               <span>Total Paid</span>
-              <span class="tabular-nums" style="color: var(--primary);">${formatINR(order.totals.total)}</span>
+              <span class="tabular-nums" style="color: var(--primary);">${formatGBP(order.totals.total)}</span>
             </div>
           </div>
         </div>

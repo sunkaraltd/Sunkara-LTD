@@ -71,59 +71,64 @@
           <div class="form-grid-2">
             <div class="form-group">
               <label for="cust-name" class="form-label">Full Name *</label>
-              <input type="text" id="cust-name" class="form-input" placeholder="e.g. Vikram Malhotra" value="Vikram Malhotra">
+              <input type="text" id="cust-name" class="form-input" placeholder="e.g. Oliver Bennett" value="Oliver Bennett">
               <span id="cust-name-error" class="form-error-msg">Full name is required</span>
             </div>
 
             <div class="form-group">
               <label for="cust-email" class="form-label">Email Address *</label>
-              <input type="email" id="cust-email" class="form-input" placeholder="vikram@example.com" value="vikram.malhotra@sunkaraltd.in">
+              <input type="email" id="cust-email" class="form-input" placeholder="oliver@example.co.uk" value="oliver.bennett@sunkaraltd.co.uk">
               <span id="cust-email-error" class="form-error-msg">Valid email required</span>
             </div>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label for="cust-phone" class="form-label">Mobile Number (India) *</label>
-              <input type="tel" id="cust-phone" class="form-input" placeholder="10-digit mobile number" maxlength="10" value="9876543210">
-              <span id="cust-phone-error" class="form-error-msg">Valid 10-digit Indian mobile required</span>
+              <label for="cust-phone" class="form-label">Mobile Number (UK) *</label>
+              <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. 07700 900123" maxlength="16" value="07700 900123">
+              <span id="cust-phone-error" class="form-error-msg">Valid UK mobile number required</span>
             </div>
 
             <div class="form-group">
-              <label for="cust-pincode" class="form-label">PIN Code (6 Digits) *</label>
-              <input type="text" id="cust-pincode" class="form-input" placeholder="e.g. 560001" maxlength="6" value="560001">
-              <span id="cust-pincode-error" class="form-error-msg">Valid 6-digit PIN code required</span>
+              <label for="cust-pincode" class="form-label">Postcode *</label>
+              <input type="text" id="cust-pincode" class="form-input" placeholder="e.g. TW3 3RS" maxlength="8" value="TW3 3RS" style="text-transform: uppercase;">
+              <span id="cust-pincode-error" class="form-error-msg">Valid UK postcode required</span>
             </div>
           </div>
 
           <div class="form-group">
             <label for="cust-address" class="form-label">Delivery Street Address *</label>
-            <input type="text" id="cust-address" class="form-input" placeholder="House/Flat No., Building, Street Area" value="#42, Silicon Heights, 100ft Road, Indiranagar">
+            <input type="text" id="cust-address" class="form-input" placeholder="House number and street name" value="61 Albion Road">
             <span id="cust-address-error" class="form-error-msg">Street address is required</span>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label for="cust-city" class="form-label">City *</label>
-              <input type="text" id="cust-city" class="form-input" placeholder="e.g. Bengaluru" value="Bengaluru">
-              <span id="cust-city-error" class="form-error-msg">City is required</span>
+              <label for="cust-city" class="form-label">Town / City *</label>
+              <input type="text" id="cust-city" class="form-input" placeholder="e.g. Hounslow" value="Hounslow">
+              <span id="cust-city-error" class="form-error-msg">Town or city is required</span>
             </div>
 
             <div class="form-group">
-              <label for="cust-state" class="form-label">State *</label>
+              <label for="cust-state" class="form-label">County *</label>
               <select id="cust-state" class="form-select">
-                <option value="Karnataka" selected>Karnataka</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="West Bengal">West Bengal</option>
+                <option value="Greater London" selected>Greater London</option>
+                <option value="Middlesex">Middlesex</option>
+                <option value="Surrey">Surrey</option>
+                <option value="Kent">Kent</option>
+                <option value="Essex">Essex</option>
+                <option value="Hertfordshire">Hertfordshire</option>
+                <option value="Berkshire">Berkshire</option>
+                <option value="Buckinghamshire">Buckinghamshire</option>
+                <option value="West Sussex">West Sussex</option>
+                <option value="Hampshire">Hampshire</option>
               </select>
-              <span id="cust-state-error" class="form-error-msg">Please select a state</span>
+              <span id="cust-state-error" class="form-error-msg">Please select a county</span>
             </div>
+          </div>
+
+          <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem;">
+            <i class="fa-solid fa-location-dot"></i> Deliveries are made within the United Kingdom only.
           </div>
 
           <div style="margin-top: 0.5rem;">
@@ -151,52 +156,24 @@
 
           <!-- Selectable Method Tabs -->
           <div class="payment-methods-grid">
-            <div class="payment-method-tab active" data-method="upi">
-              <div class="payment-method-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-              <span class="payment-method-label">UPI</span>
-            </div>
-
-            <div class="payment-method-tab" data-method="card">
+            <div class="payment-method-tab active" data-method="card">
               <div class="payment-method-icon"><i class="fa-solid fa-credit-card"></i></div>
-              <span class="payment-method-label">Card</span>
+              <span class="payment-method-label">Debit / Credit Card</span>
             </div>
 
             <div class="payment-method-tab" data-method="netbanking">
               <div class="payment-method-icon"><i class="fa-solid fa-building-columns"></i></div>
-              <span class="payment-method-label">Net Banking</span>
+              <span class="payment-method-label">Online Banking</span>
             </div>
 
             <div class="payment-method-tab" data-method="wallet">
               <div class="payment-method-icon"><i class="fa-solid fa-wallet"></i></div>
-              <span class="payment-method-label">Wallets</span>
-            </div>
-
-            <div class="payment-method-tab" data-method="cod">
-              <div class="payment-method-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-              <span class="payment-method-label">Pay on Delivery</span>
+              <span class="payment-method-label">Digital Wallets</span>
             </div>
           </div>
 
-          <!-- Tab 1: UPI -->
-          <div id="payment-panel-upi" class="payment-content-panel payment-tab-content">
-            <div class="upi-box">
-              <div style="font-size: 0.8125rem; font-weight: 700; color: var(--secondary);">
-                Instant UPI Payment (Google Pay / PhonePe / Paytm / BHIM)
-              </div>
-              <div class="upi-verify-row">
-                <input type="text" id="upi-id-input" class="form-input" placeholder="e.g. yourname@oksbi or mobile@upi" value="shopper@upi" style="flex: 1;">
-                <button type="button" id="verify-upi-btn" class="btn btn-secondary btn-sm" onclick="verifyUpiId()">Verify</button>
-              </div>
-              <span id="upi-error" class="form-error-msg"></span>
-              <div id="upi-verify-badge" class="upi-verify-badge"></div>
-              <div style="font-size: 0.75rem; color: var(--text-light); display: flex; align-items: center; gap: 0.4rem;">
-                <i class="fa-solid fa-qrcode"></i> A collect notification will be simulated on your registered UPI application.
-              </div>
-            </div>
-          </div>
-
-          <!-- Tab 2: Credit / Debit Card -->
-          <div id="payment-panel-card" class="payment-content-panel payment-tab-content" style="display: none;">
+          <!-- Tab 1: Credit / Debit Card -->
+          <div id="payment-panel-card" class="payment-content-panel payment-tab-content">
             <!-- Interactive Live Card Visual -->
             <div class="card-preview-box">
               <div class="card-preview-header">
@@ -205,14 +182,14 @@
               </div>
               <div id="card-preview-num" class="card-preview-num">4532 •••• •••• 8890</div>
               <div class="card-preview-footer">
-                <span id="card-preview-name">VIKRAM MALHOTRA</span>
+                <span id="card-preview-name">OLIVER BENNETT</span>
                 <span id="card-preview-expiry">12/28</span>
               </div>
             </div>
 
             <div class="form-group">
               <label for="card-name-input" class="form-label">Cardholder Name *</label>
-              <input type="text" id="card-name-input" class="form-input" placeholder="Name as printed on card" value="Vikram Malhotra">
+              <input type="text" id="card-name-input" class="form-input" placeholder="Name as printed on card" value="Oliver Bennett">
             </div>
 
             <div class="form-group">
@@ -235,67 +212,58 @@
             <div style="margin-top: 0.25rem;">
               <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-muted); cursor: pointer;">
                 <input type="checkbox" id="save-card-checkbox">
-                <span>Save this card for faster checkout (Unchecked by default)</span>
+                <span>Save this card securely for faster checkout (Unchecked by default)</span>
               </label>
+            </div>
+
+            <div style="font-size: 0.75rem; color: var(--text-light); display: flex; align-items: center; gap: 0.4rem; margin-top: 0.75rem;">
+              <i class="fa-solid fa-lock"></i> Visa, Mastercard and American Express accepted. 3-D Secure verification applies.
             </div>
           </div>
 
-          <!-- Tab 3: Net Banking -->
+          <!-- Tab 2: Online Banking -->
           <div id="payment-panel-netbanking" class="payment-content-panel payment-tab-content" style="display: none;">
             <div class="form-group">
-              <label for="netbanking-bank-select" class="form-label">Select Your Indian Bank *</label>
+              <label for="netbanking-bank-select" class="form-label">Select Your Bank *</label>
               <select id="netbanking-bank-select" class="form-select">
                 <option value="">-- Choose Bank --</option>
-                <option value="HDFC Bank" selected>HDFC Bank</option>
-                <option value="State Bank of India">State Bank of India (SBI)</option>
-                <option value="ICICI Bank">ICICI Bank</option>
-                <option value="Axis Bank">Axis Bank</option>
-                <option value="Kotak Mahindra Bank">Kotak Mahindra Bank</option>
-                <option value="Punjab National Bank">Punjab National Bank (PNB)</option>
-                <option value="Bank of Baroda">Bank of Baroda</option>
-                <option value="IndusInd Bank">IndusInd Bank</option>
+                <option value="Barclays" selected>Barclays</option>
+                <option value="HSBC UK">HSBC UK</option>
+                <option value="Lloyds Bank">Lloyds Bank</option>
+                <option value="NatWest">NatWest</option>
+                <option value="Santander UK">Santander UK</option>
+                <option value="Halifax">Halifax</option>
+                <option value="Nationwide Building Society">Nationwide Building Society</option>
+                <option value="TSB Bank">TSB Bank</option>
               </select>
             </div>
             <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4;">
-              You will be redirected to the simulated Net Banking login gateway of your chosen bank to complete verification.
+              You will be redirected to your bank's secure online banking login to approve the payment (Open Banking / Faster Payments).
             </div>
           </div>
 
-          <!-- Tab 4: Wallets -->
+          <!-- Tab 3: Wallets -->
           <div id="payment-panel-wallet" class="payment-content-panel payment-tab-content" style="display: none;">
             <div style="font-size: 0.8125rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.75rem;">
               Select Wallet Provider:
             </div>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
               <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
-                <input type="radio" name="wallet-select" value="Paytm" checked>
-                <span>Paytm Wallet (Linked balance simulation)</span>
+                <input type="radio" name="wallet-select" value="PayPal" checked>
+                <span>PayPal (Buyer protection included)</span>
               </label>
               <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
-                <input type="radio" name="wallet-select" value="PhonePe">
-                <span>PhonePe Wallet</span>
+                <input type="radio" name="wallet-select" value="Apple Pay">
+                <span>Apple Pay</span>
+              </label>
+              <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
+                <input type="radio" name="wallet-select" value="Google Pay">
+                <span>Google Pay</span>
               </label>
               <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
                 <input type="radio" name="wallet-select" value="Amazon Pay">
                 <span>Amazon Pay Balance</span>
               </label>
-              <label class="filter-label" style="background: var(--surface); padding: 0.625rem; border-radius: var(--radius-sm); border: 1px solid var(--surface-border);">
-                <input type="radio" name="wallet-select" value="MobiKwik">
-                <span>MobiKwik ZIP</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Tab 5: Cash on Delivery -->
-          <div id="payment-panel-cod" class="payment-content-panel payment-tab-content" style="display: none;">
-            <div style="display: flex; gap: 0.75rem; align-items: flex-start;">
-              <i class="fa-solid fa-truck" style="font-size: 1.5rem; color: var(--primary); margin-top: 0.2rem;"></i>
-              <div>
-                <div style="font-size: 0.875rem; font-weight: 700; color: var(--secondary);">Cash / Pay on Delivery Available</div>
-                <p style="font-size: 0.8125rem; color: var(--text-muted); line-height: 1.4; margin-top: 0.25rem;">
-                  Pay in cash or scan the delivery executive's UPI QR code upon receiving your shipment. A verification OTP will be sent to your registered mobile number prior to dispatch.
-                </p>
-              </div>
             </div>
           </div>
         </div>

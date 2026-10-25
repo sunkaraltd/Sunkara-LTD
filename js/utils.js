@@ -9,13 +9,19 @@ const STORAGE_KEYS = {
   APPLIED_COUPON: 'sunkaraltd_applied_coupon'
 };
 
-// Format currency into Indian Rupees (₹) with Indian Numbering System
-function formatINR(amount) {
-  if (isNaN(amount) || amount === null) return '₹0';
-  return '₹' + Number(amount).toLocaleString('en-IN', {
-    maximumFractionDigits: 0
+// Format currency into Pounds Sterling (£) using UK number formatting
+function formatGBP(amount) {
+  const num = Number(amount);
+  if (isNaN(num) || amount === null) return '£0';
+  return '£' + num.toLocaleString('en-GB', {
+    minimumFractionDigits: Number.isInteger(num) ? 0 : 2,
+    maximumFractionDigits: 2
   });
 }
+
+// Delivery thresholds (GBP)
+const FREE_SHIPPING_THRESHOLD = 50;
+const STANDARD_SHIPPING_CHARGE = 4.99;
 
 // Available promo coupon codes
 const VALID_COUPONS = {
@@ -23,31 +29,31 @@ const VALID_COUPONS = {
     code: 'SUNKARA10',
     type: 'percent',
     value: 10,
-    maxDiscount: 1500,
-    minOrder: 1000,
-    description: '10% off up to ₹1,500 on orders above ₹1,000'
+    maxDiscount: 150,
+    minOrder: 100,
+    description: '10% off up to £150 on orders above £100'
   },
   'VOLT10': {
     code: 'SUNKARA10',
     type: 'percent',
     value: 10,
-    maxDiscount: 1500,
-    minOrder: 1000,
-    description: '10% off up to ₹1,500 on orders above ₹1,000'
+    maxDiscount: 150,
+    minOrder: 100,
+    description: '10% off up to £150 on orders above £100'
   },
   'FREESHIP': {
     code: 'FREESHIP',
     type: 'shipping',
     value: 100,
-    minOrder: 499,
+    minOrder: 49,
     description: 'Free standard delivery on your order'
   },
-  'SAVE500': {
-    code: 'SAVE500',
+  'SAVE50': {
+    code: 'SAVE50',
     type: 'flat',
-    value: 500,
-    minOrder: 2000,
-    description: 'Flat ₹500 discount on orders above ₹2,000'
+    value: 50,
+    minOrder: 200,
+    description: 'Flat £50 discount on orders above £200'
   }
 };
 
@@ -61,8 +67,8 @@ function calculateOrderTotals(cartItems, couponCode = null) {
     }
   });
 
-  // Standard shipping threshold: free if subtotal >= 999, else 99
-  let shipping = subtotal >= 999 || subtotal === 0 ? 0 : 99;
+  // Free standard UK delivery over £50, otherwise £4.99
+  let shipping = subtotal >= FREE_SHIPPING_THRESHOLD || subtotal === 0 ? 0 : STANDARD_SHIPPING_CHARGE;
   let discount = 0;
   let appliedCoupon = null;
 
@@ -80,17 +86,17 @@ function calculateOrderTotals(cartItems, couponCode = null) {
     }
   }
 
-  // Inclusive GST 18% calculation for transparency
+  // UK VAT at 20%, already included in the displayed prices
   const taxableAmount = Math.max(0, subtotal - discount);
-  const gstAmount = Math.round(taxableAmount * 0.18 / 1.18);
+  const vatAmount = Math.round((taxableAmount * 0.2 / 1.2) * 100) / 100;
   const total = Math.max(0, taxableAmount + shipping);
 
   return {
     subtotal,
-    discount: Math.round(discount),
+    discount: Math.round(discount * 100) / 100,
     shipping,
-    gstAmount,
-    total: Math.round(total),
+    vatAmount,
+    total: Math.round(total * 100) / 100,
     appliedCoupon
   };
 }

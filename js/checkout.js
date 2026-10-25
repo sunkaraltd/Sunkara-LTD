@@ -2,8 +2,7 @@
  * Sunkara LTD - Realistic Payment Gateway & Checkout Controller
  */
 
-let selectedPaymentMethod = 'upi';
-let upiVerified = false;
+let selectedPaymentMethod = 'card';
 let simulateFailureMode = false;
 
 // Initialize checkout page
@@ -48,7 +47,7 @@ function renderCheckoutOrderSummary() {
 
   const cart = getStoredCart();
   const appliedCouponCode = localStorage.getItem(STORAGE_KEYS.APPLIED_COUPON) || null;
-  const { subtotal, discount, shipping, gstAmount, total, appliedCoupon } = calculateOrderTotals(cart, appliedCouponCode);
+  const { subtotal, discount, shipping, vatAmount, total, appliedCoupon } = calculateOrderTotals(cart, appliedCouponCode);
 
   let itemsHtml = '';
   cart.forEach(item => {
@@ -59,10 +58,10 @@ function renderCheckoutOrderSummary() {
         <img src="${product.image}" alt="${product.name}" style="width: 52px; height: 52px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid var(--surface-border);" onerror="handleImageError(this, '${product.name}')">
         <div style="flex: 1; min-width: 0;">
           <div style="font-size: 0.8125rem; font-weight: 700; color: var(--secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${product.name}</div>
-          <div style="font-size: 0.75rem; color: var(--text-muted);">Qty: ${item.quantity} × ${formatINR(product.price)}</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">Qty: ${item.quantity} × ${formatGBP(product.price)}</div>
         </div>
         <div style="font-size: 0.875rem; font-weight: 700; color: var(--secondary); text-align: right;" class="tabular-nums">
-          ${formatINR(product.price * item.quantity)}
+          ${formatGBP(product.price * item.quantity)}
         </div>
       </div>
     `;
@@ -81,29 +80,29 @@ function renderCheckoutOrderSummary() {
 
       <div class="summary-row">
         <span>Subtotal</span>
-        <span class="tabular-nums font-semibold">${formatINR(subtotal)}</span>
+        <span class="tabular-nums font-semibold">${formatGBP(subtotal)}</span>
       </div>
 
       ${discount > 0 ? `
       <div class="summary-row" style="color: var(--success);">
         <span>Coupon Discount (${appliedCoupon ? appliedCoupon.code : ''})</span>
-        <span class="tabular-nums font-semibold">-${formatINR(discount)}</span>
+        <span class="tabular-nums font-semibold">-${formatGBP(discount)}</span>
       </div>
       ` : ''}
 
       <div class="summary-row">
         <span>Delivery Charge</span>
-        <span class="tabular-nums font-semibold">${shipping === 0 ? '<span style="color: var(--success);">FREE</span>' : formatINR(shipping)}</span>
+        <span class="tabular-nums font-semibold">${shipping === 0 ? '<span style="color: var(--success);">FREE</span>' : formatGBP(shipping)}</span>
       </div>
 
       <div class="summary-row" style="font-size: 0.75rem; color: var(--text-light);">
-        <span>Integrated GST (18% Included)</span>
-        <span class="tabular-nums">${formatINR(gstAmount)}</span>
+        <span>VAT (20% Included)</span>
+        <span class="tabular-nums">${formatGBP(vatAmount)}</span>
       </div>
 
       <div class="summary-row total-row">
         <span>Total Payable</span>
-        <span class="tabular-nums" style="color: var(--primary); font-size: 1.35rem;">${formatINR(total)}</span>
+        <span class="tabular-nums" style="color: var(--primary); font-size: 1.35rem;">${formatGBP(total)}</span>
       </div>
 
       <!-- Payment Failure Simulation Toggle -->
@@ -116,7 +115,7 @@ function renderCheckoutOrderSummary() {
 
       <!-- Action Button -->
       <button id="pay-now-btn" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.25rem; box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);" onclick="handleProcessPayment()">
-        <i class="fa-solid fa-lock"></i> Pay ${formatINR(total)}
+        <i class="fa-solid fa-lock"></i> Pay ${formatGBP(total)}
       </button>
 
       <div style="margin-top: 1rem; text-align: center; font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
@@ -205,44 +204,6 @@ function setupCardFormatting() {
   }
 }
 
-// Simulate UPI ID verification
-function verifyUpiId() {
-  const upiInput = document.getElementById('upi-id-input');
-  const badge = document.getElementById('upi-verify-badge');
-  const errorEl = document.getElementById('upi-error');
-
-  if (!upiInput) return;
-  const val = upiInput.value.trim();
-
-  // Basic UPI pattern: alphanumeric@bank
-  const upiPattern = /^[\w.-]+@[\w.-]+$/;
-  if (!upiPattern.test(val)) {
-    if (errorEl) {
-      errorEl.textContent = 'Please enter a valid UPI ID (e.g. yourname@oksbi or 9876543210@paytm)';
-      errorEl.classList.add('visible');
-    }
-    if (badge) badge.style.display = 'none';
-    upiVerified = false;
-    return;
-  }
-
-  if (errorEl) errorEl.classList.remove('visible');
-  const verifyBtn = document.getElementById('verify-upi-btn');
-  if (verifyBtn) {
-    verifyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Verifying...';
-  }
-
-  setTimeout(() => {
-    if (verifyBtn) verifyBtn.innerHTML = 'Verified';
-    if (badge) {
-      badge.style.display = 'inline-flex';
-      badge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Verified (Sunkara LTD Verified Merchant)';
-    }
-    upiVerified = true;
-    showToast('UPI ID verified successfully!', 'success');
-  }, 750);
-}
-
 // Toggle simulated failure mode
 function toggleFailureSimulation(checked) {
   simulateFailureMode = checked;
@@ -292,11 +253,11 @@ function validateCustomerDetails() {
     clearError('cust-email-error');
   }
 
-  // Indian Mobile (10 digits starting with 6-9)
-  const phone = document.getElementById('cust-phone')?.value.trim();
-  const phoneRegex = /^[6-9]\d{9}$/;
-  if (!phone || !phoneRegex.test(phone)) {
-    setError('cust-phone-error', 'Please enter a valid 10-digit Indian mobile number.');
+  // UK Mobile (07xxx xxxxxx or +44 7xxx xxxxxx)
+  const phone = document.getElementById('cust-phone')?.value.replace(/[\s-]/g, '') || '';
+  const phoneRegex = /^(?:\+44|0)7\d{9}$/;
+  if (!phoneRegex.test(phone)) {
+    setError('cust-phone-error', 'Please enter a valid UK mobile number (e.g. 07700 900123).');
   } else {
     clearError('cust-phone-error');
   }
@@ -317,19 +278,19 @@ function validateCustomerDetails() {
     clearError('cust-city-error');
   }
 
-  // State
+  // State / County
   const state = document.getElementById('cust-state')?.value;
   if (!state) {
-    setError('cust-state-error', 'Please select a state.');
+    setError('cust-state-error', 'Please select a county.');
   } else {
     clearError('cust-state-error');
   }
 
-  // Indian PIN Code (6 digits)
+  // UK Postcode (e.g. TW3 3RS)
   const pin = document.getElementById('cust-pincode')?.value.trim();
-  const pinRegex = /^[1-9][0-9]{5}$/;
-  if (!pin || !pinRegex.test(pin)) {
-    setError('cust-pincode-error', 'Please enter a valid 6-digit Indian PIN code.');
+  const postcodeRegex = /^[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}$/i;
+  if (!pin || !postcodeRegex.test(pin)) {
+    setError('cust-pincode-error', 'Please enter a valid UK postcode (e.g. TW3 3RS).');
   } else {
     clearError('cust-pincode-error');
   }
@@ -339,15 +300,6 @@ function validateCustomerDetails() {
 
 // Validate Payment Method Fields
 function validatePaymentFields() {
-  if (selectedPaymentMethod === 'upi') {
-    const upiVal = document.getElementById('upi-id-input')?.value.trim();
-    if (!upiVal || !/^[\w.-]+@[\w.-]+$/.test(upiVal)) {
-      showToast('Please enter and verify a valid UPI ID (e.g. name@upi).', 'error');
-      return false;
-    }
-    return true;
-  }
-
   if (selectedPaymentMethod === 'card') {
     const cardNum = document.getElementById('card-number-input')?.value.replace(/\s/g, '');
     const cardName = document.getElementById('card-name-input')?.value.trim();
@@ -376,7 +328,7 @@ function validatePaymentFields() {
   if (selectedPaymentMethod === 'netbanking') {
     const bank = document.getElementById('netbanking-bank-select')?.value;
     if (!bank) {
-      showToast('Please select your bank for Net Banking.', 'error');
+      showToast('Please select your bank for online banking.', 'error');
       return false;
     }
     return true;
@@ -391,7 +343,6 @@ function validatePaymentFields() {
     return true;
   }
 
-  // COD is valid
   return true;
 }
 
@@ -480,12 +431,12 @@ function handleProcessPayment() {
 
     const customerData = {
       name: document.getElementById('cust-name')?.value.trim() || 'Guest Customer',
-      email: document.getElementById('cust-email')?.value.trim() || 'customer@sunkaraltd.in',
-      phone: document.getElementById('cust-phone')?.value.trim() || '9876543210',
-      address: document.getElementById('cust-address')?.value.trim() || 'MG Road',
-      city: document.getElementById('cust-city')?.value.trim() || 'Bengaluru',
-      state: document.getElementById('cust-state')?.value || 'Karnataka',
-      pin: document.getElementById('cust-pincode')?.value.trim() || '560001'
+      email: document.getElementById('cust-email')?.value.trim() || 'customer@sunkaraltd.co.uk',
+      phone: document.getElementById('cust-phone')?.value.trim() || '07700 900123',
+      address: document.getElementById('cust-address')?.value.trim() || '61 Albion Road',
+      city: document.getElementById('cust-city')?.value.trim() || 'Hounslow',
+      state: document.getElementById('cust-state')?.value || 'Greater London',
+      pin: document.getElementById('cust-pincode')?.value.trim() || 'TW3 3RS'
     };
 
     const orderRecord = {
