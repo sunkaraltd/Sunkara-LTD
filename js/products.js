@@ -369,6 +369,71 @@ const PRODUCTS = [
       "Machine Learning": "Hardware Acceleration for TinyML, Edge Impulse, and Tensor Core"
     },
     description: "Empower your edge AI, smart home, and robotics projects with vector computing, massive 8MB PSRAM, and integrated low-power wireless communication direct from Espressif Systems."
+  },
+  {
+    id: "prod-phone-02",
+    name: "Samsung Galaxy Z Fold6 5G (12GB RAM, 512GB Crafted Black)",
+    brand: "Samsung",
+    shortDesc: "7.6\" folding Dynamic AMOLED 2X 120Hz display, Snapdragon 8 Gen 3 for Galaxy, Galaxy AI and 50MP triple camera.",
+    category: "Smartphones",
+    categorySlug: "smartphones",
+    price: 2300,
+    originalPrice: 2599,
+    discount: 12,
+    rating: 4.8,
+    reviewsCount: 147,
+    inStock: true,
+    stockCount: 9,
+    badge: "Premium Foldable",
+    image: "assets/images/product_flagship_phone_1792929459254.jpg",
+    additionalImages: [
+      "assets/images/product_flagship_phone_1792929459254.jpg",
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
+    ],
+    warranty: "1 Year Official Samsung UK Warranty + 1 Free Screen Replacement",
+    specs: {
+      "Brand": "Samsung",
+      "Main Display": "7.6-inch Dynamic AMOLED 2X, 120Hz, 2600 nits peak",
+      "Cover Display": "6.3-inch Dynamic AMOLED 2X, 120Hz, Corning Gorilla Glass Victus 2",
+      "Processor": "Qualcomm Snapdragon 8 Gen 3 for Galaxy (4nm)",
+      "RAM & Storage": "12GB LPDDR5X, 512GB UFS 4.0",
+      "Camera": "50MP Wide + 12MP Ultra-wide + 10MP Telephoto (3x), 4MP Under-Display Selfie",
+      "Battery": "4400 mAh with 25W Super Fast Charging & Wireless Charging",
+      "Build": "Enhanced Armor Aluminum Frame, IP48 Water Resistance, 239g"
+    },
+    description: "The Samsung Galaxy Z Fold6 combines a pocket-sized 6.3-inch cover screen with a full 7.6-inch tablet-class canvas when unfolded. Built around the Snapdragon 8 Gen 3 for Galaxy and Galaxy AI tools like Circle to Search, Note Assist, and live interpreter mode, it is the ultimate productivity flagship for multitaskers."
+  },
+  {
+    id: "prod-laptop-02",
+    name: "Apple MacBook Pro 16\" M4 Pro (14-Core CPU, 20-Core GPU, 24GB, 512GB)",
+    brand: "Apple",
+    shortDesc: "16-inch Liquid Retina XDR display, Apple M4 Pro chip, 24GB unified memory, up to 22 hours battery life.",
+    category: "Laptops and computers",
+    categorySlug: "laptops",
+    price: 2700,
+    originalPrice: 2999,
+    discount: 10,
+    rating: 4.9,
+    reviewsCount: 96,
+    inStock: true,
+    stockCount: 6,
+    badge: "Creator Choice",
+    image: "assets/images/hero_electronics_showcase_1792929458222.jpg",
+    additionalImages: [
+      "assets/images/hero_electronics_showcase_1792929458222.jpg"
+    ],
+    warranty: "1 Year Official Apple UK Warranty + AppleCare Eligible",
+    specs: {
+      "Brand": "Apple",
+      "Chip": "Apple M4 Pro (14-core CPU, 20-core GPU, 16-core Neural Engine)",
+      "Display": "16.2-inch Liquid Retina XDR, 3456 x 2234, 1600 nits HDR peak, ProMotion 120Hz",
+      "Memory": "24GB Unified Memory (273GB/s bandwidth)",
+      "Storage": "512GB Superfast SSD",
+      "Battery": "Up to 22 hours video playback, 100Wh, 140W USB-C Fast Charging",
+      "Ports": "3x Thunderbolt 5 (USB-C), HDMI, SDXC, MagSafe 3, 3.5mm Headphone Jack",
+      "Weight": "2.14 kg Space Black Anodized Aluminium"
+    },
+    description: "Apple's M4 Pro MacBook Pro 16-inch is built for developers, editors, and 3D artists who need desktop-class power on the move. The Liquid Retina XDR panel delivers reference-grade colour accuracy, while Thunderbolt 5 connectivity and all-day battery life make it a true portable studio."
   }
 ];
 
